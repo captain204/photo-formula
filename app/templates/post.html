@@ -1,0 +1,47 @@
+{% extends"base.html"%}
+{% block body %}    
+<div id="content" class="site-content content-1330 center-relative">
+    {% for post in posts %}
+    <article>
+        <h1 class="entry-title">{{post.title}}</h1>
+        <div class="center-relative clear">
+
+            <div class="post-info">
+                <div class="cat-links">
+                    <ul>
+                        <li>
+                            <a href="#">{{post.category}}</a>
+                        </li>                            
+                    </ul>
+                </div>
+                <div class="post-author">
+                    Author: <a href="#">{{post.author.username}}</a>
+                </div>
+                <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
+            </div>
+            <div class="entry-content">
+                <div class="content-wrap">
+                    {% if post.body_html %}
+                        {{ post.body_html | safe }} 
+                    {% else %}
+                        {{ post.body }}
+                    {% endif %}
+                    <div class="clear"></div>                                    
+                </div>
+        </div>
+    </article>
+    {%endfor%}
+    <div class="nav-links">                
+        <div class="nav-previous">
+            <p class="nav-previous-text">PREVIOUS STORY</p>
+            <a href="#" rel="prev">Two ghostly white figures in coveralls</a> 
+        </div>
+        <div class="nav-next">
+            <p class="nav-next-text">NEXT STORY</p>
+            <a href="#" rel="next">I had made a valuable acquisition</a> 
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+{%endblock%}
